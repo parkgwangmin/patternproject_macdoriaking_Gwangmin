@@ -37,7 +37,7 @@ public class OrderPanel extends JPanel implements ActionListener {
     private Macafe macafe;
     private Burger burger;
     private JTextArea textfd;
-    public int cafestock = 10;
+    public int cafestock = 100;
 
     public OrderPanel() {
         setLayout(null);
@@ -129,18 +129,23 @@ public class OrderPanel extends JPanel implements ActionListener {
             macafe = new Ice(macafe);
         }
 
-        //주문하기
+        //맥카페 주문하기
         if (e.getSource() == take_OK_cafe) {
-            orderCTL.startOrder();
-            cafestock--;
+
+            if (cafestock > 0) {
+                cafestock--;
+                orderCTL.startOrder();
+                System.out.println("주문결과 : " + macafe.getDescription());
+                System.out.println("가격 : " + macafe.cost());
+                macafe.cost();
+                textfd.append("주문결과 : " + macafe.getDescription() + "\n"
+                        + "가격 : " + macafe.cost() + "\n"
+                        + "커피재고량 : " + cafestock);
+            } else {
+                textfd.setText("커피 재고 부족...");
+            }
 
 //            String cost = String.valueOf(macafe.cost()); 혹시나 String으로 출력해야한다면..
-            System.out.println("주문결과 : " + macafe.getDescription());
-            System.out.println("가격 : " + macafe.cost());
-            macafe.cost();
-            textfd.append("주문결과 : " + macafe.getDescription() + "\n"
-                    + "가격 : " + macafe.cost() + "\n"
-                    + "재고량 : "+ cafestock);
         }
 
         /**
