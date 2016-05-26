@@ -38,7 +38,7 @@ public class OrderPanel extends JPanel implements ActionListener {
     private Burger burger;
     private JTextArea textfd;
     private int cafestock = 100;
-    private int bugerstock = 100;
+    private int burgerstock = 100;
 
     public OrderPanel() {
         setLayout(null);
@@ -159,6 +159,7 @@ public class OrderPanel extends JPanel implements ActionListener {
 
         /**
          * 햄버거 메뉴
+         * 수정일 : 5.26 2pm
          */
         if (e.getSource() == bt_Sanghai) {
             System.out.println("상하이버거 선택");
@@ -181,6 +182,7 @@ public class OrderPanel extends JPanel implements ActionListener {
 
         /**
          * 햄버거 데코레이터
+         * 수정일 : 5.26 2pm
          */
         if (e.getSource() == bt_Coke) {
             System.out.println("콜라 추가선택 + 1500원");
@@ -202,14 +204,15 @@ public class OrderPanel extends JPanel implements ActionListener {
 
         /**
          * 햄버거 주문버튼
+         * 수정일 : 5.26 2pm
          */
         if (e.getSource() == take_OK_burger) {
-            if(bugerstock > 0){
+            if(burgerstock > 0){
                 orderCTL.startOrder();
-                bugerstock--;
+                burgerstock--;
                 textfd.append("주문결과 : " + burger.getDescription()+"\n"
                               +"가격 : " + burger.cost() + "\n"
-                              +"버거 재고 : " + bugerstock + "\n");
+                              +"버거 재고 : " + burgerstock + "\n");
                 bt_Sanghai.setEnabled(true);
                 bt_Bulgogi.setEnabled(true);
             } else {
