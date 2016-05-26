@@ -37,7 +37,8 @@ public class OrderPanel extends JPanel implements ActionListener {
     private Macafe macafe;
     private Burger burger;
     private JTextArea textfd;
-    public int cafestock = 100;
+    private int cafestock = 100;
+    private int bugerstock = 100;
 
     public OrderPanel() {
         setLayout(null);
@@ -111,6 +112,10 @@ public class OrderPanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 
+        /**
+         * 맥카페 메뉴
+         * 수정일 : 5.26 2pm
+         */
         if (e.getSource() == bt_Americano) {
             System.out.println("아메리카노 선택");
             textfd.setText("아메리카노 선택\n");
@@ -121,7 +126,8 @@ public class OrderPanel extends JPanel implements ActionListener {
         }
 
         /**
-         * 데코레이터 버튼
+         * 맥카페 데코레이터
+         * 수정일 : 5.26 2pm
          */
         if (e.getSource() == bt_Ice) {
             System.out.println("얼음추가 선택");
@@ -129,7 +135,10 @@ public class OrderPanel extends JPanel implements ActionListener {
             macafe = new Ice(macafe);
         }
 
-        //맥카페 주문하기
+        /**
+         * 맥카페 주문버튼         * 
+         * 수정일 : 5.26 2pm
+         */
         if (e.getSource() == take_OK_cafe) {
 
             if (cafestock > 0) {
@@ -139,8 +148,8 @@ public class OrderPanel extends JPanel implements ActionListener {
                 System.out.println("가격 : " + macafe.cost());
                 macafe.cost();
                 textfd.append("주문결과 : " + macafe.getDescription() + "\n"
-                        + "가격 : " + macafe.cost() + "\n"
-                        + "커피재고량 : " + cafestock);
+                              + "가격 : " + macafe.cost() + "\n"
+                              + "커피재고량 : " + cafestock);
             } else {
                 textfd.setText("커피 재고 부족...");
             }
@@ -149,10 +158,11 @@ public class OrderPanel extends JPanel implements ActionListener {
         }
 
         /**
-         * 햄버거 종류
+         * 햄버거 메뉴
          */
         if (e.getSource() == bt_Sanghai) {
             System.out.println("상하이버거 선택");
+            textfd.setText("상하이버거 선택\n");
             Burger sanghai = new SanghaiBuger();
             SanghaiCommand makeSanghai = new SanghaiCommand((SanghaiBuger) sanghai);
             orderCTL.setCommand(makeSanghai);
@@ -161,6 +171,7 @@ public class OrderPanel extends JPanel implements ActionListener {
         }
         if (e.getSource() == bt_Bulgogi) {
             System.out.println("불고기버거 선택");
+            textfd.setText("불고기버거 선택\n");
             BulgogiBuger bulgogi = new BulgogiBuger();
             BulgogiCommand makeBulgogi = new BulgogiCommand(bulgogi);
             orderCTL.setCommand(makeBulgogi);
@@ -169,31 +180,41 @@ public class OrderPanel extends JPanel implements ActionListener {
         }
 
         /**
-         * 데코레이터 버튼
+         * 햄버거 데코레이터
          */
         if (e.getSource() == bt_Coke) {
             System.out.println("콜라 추가선택 + 1500원");
+            textfd.append("콜라 추가선택 + 1500원\n");
             burger = new Coke(burger);
         }
 
         if (e.getSource() == bt_French) {
             System.out.println("후렌치후라이 추가선택 + 1500원");
+            textfd.append("후렌치후라이 추가선택 + 1500원\n");
             burger = new FrenchFries(burger);
         }
 
         if (e.getSource() == bt_SetMenu) {
             System.out.println("세트메뉴선택 + 2000원");
+            textfd.append("세트메뉴선택 + 1500원\n");
             burger = new SetBurgerMenu(burger);
         }
 
+        /**
+         * 햄버거 주문버튼
+         */
         if (e.getSource() == take_OK_burger) {
-            orderCTL.startOrder();
-
-            System.out.println("주문결과 : " + burger.getDescription());
-            System.out.println("가격 : " + burger.cost());
-            burger.cost();
-            bt_Sanghai.setEnabled(true);
-            bt_Bulgogi.setEnabled(true);
+            if(bugerstock > 0){
+                orderCTL.startOrder();
+                bugerstock--;
+                textfd.append("주문결과 : " + burger.getDescription()+"\n"
+                              +"가격 : " + burger.cost() + "\n"
+                              +"버거 재고 : " + bugerstock + "\n");
+                bt_Sanghai.setEnabled(true);
+                bt_Bulgogi.setEnabled(true);
+            } else {
+                textfd.setText("버거 재고 부족 ...");
+            }
         }
     }
 
