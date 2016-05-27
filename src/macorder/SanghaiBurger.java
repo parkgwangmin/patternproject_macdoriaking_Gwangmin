@@ -9,17 +9,19 @@ package macorder;
  *
  * @author qra04_000
  */
-public class BulgogiCommand implements Command {
+public class SanghaiBurger extends Burger{
 
-    BulgogiBurger bulgogi;
+    public SanghaiBurger() {
+        this.description = "상하이버거";
+    }
 
-    public BulgogiCommand(BulgogiBurger bulgogiBurger) {
-        this.bulgogi = bulgogiBurger;
+    public void makeBurger() {
+        System.out.println("상하이버거를 만듭니다.");
     }
 
     @Override
-    public void execute() {
-        bulgogi.makeBurger();
+    public int cost() {
+        return 4500;
     }
 
 }

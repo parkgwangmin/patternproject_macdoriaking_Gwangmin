@@ -11,9 +11,9 @@ package macorder;
  */
 public class SanghaiCommand implements Command {
 
-    SanghaiBuger sanghai;
+    SanghaiBurger sanghai;
 
-    public SanghaiCommand(SanghaiBuger sanghai) {
+    public SanghaiCommand(SanghaiBurger sanghai) {
         this.sanghai = sanghai;
     }
 

@@ -9,17 +9,17 @@ package macorder;
  *
  * @author qra04_000
  */
-public class BulgogiCommand implements Command {
+public class CafeLatteCommand implements Command {
 
-    BulgogiBurger bulgogi;
+    CafeLatte cafelatte;
 
-    public BulgogiCommand(BulgogiBurger bulgogiBurger) {
-        this.bulgogi = bulgogiBurger;
+    public CafeLatteCommand(CafeLatte cafelatte) {
+        this.cafelatte = cafelatte;
     }
 
     @Override
     public void execute() {
-        bulgogi.makeBurger();
+        cafelatte.makeCoffee();
     }
 
 }

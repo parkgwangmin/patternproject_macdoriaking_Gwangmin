@@ -10,8 +10,8 @@ package macorder;
  *
  * @author qra04_000
  */
-public class Cafelatte extends Macafe{
-    public Cafelatte() {
+public class CafeLatte extends Macafe{
+    public CafeLatte() {
         this.description = "카페라떼";
     }
     

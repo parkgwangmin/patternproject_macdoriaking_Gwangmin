@@ -7,19 +7,17 @@ package macorder;
 
 /**
  *
- * @author qra04_000
+ * @author HaeI
  */
-public class BulgogiCommand implements Command {
+public class ShrimpCommand implements Command {
+    ShrimpBurger shrimp;
 
-    BulgogiBurger bulgogi;
-
-    public BulgogiCommand(BulgogiBurger bulgogiBurger) {
-        this.bulgogi = bulgogiBurger;
+    public ShrimpCommand(ShrimpBurger shrimpBurger) {
+        this.shrimp = shrimpBurger;
     }
 
     @Override
     public void execute() {
-        bulgogi.makeBurger();
+        shrimp.makeBurger();
     }
-
 }

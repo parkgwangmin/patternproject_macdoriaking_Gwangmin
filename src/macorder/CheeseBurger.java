@@ -7,21 +7,19 @@ package macorder;
 
 /**
  *
- * @author qra04_000
+ * @author HaeI
  */
-public class BulgogiBuger extends Burger{
-
-    public BulgogiBuger() {
-        this.description = "불고기버거";
+public class CheeseBurger extends Burger{
+    public CheeseBurger() {
+        this.description = "치즈버거";
     }
 
     public void makeBurger() {
-        System.out.println("불고기버거를 만듭니다.");
+        System.out.println("치즈버거를 만듭니다.");
     }
 
     @Override
     public int cost() {
-        return 4000;
+        return 2100;
     }
-
 }

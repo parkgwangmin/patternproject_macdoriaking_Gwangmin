@@ -7,21 +7,20 @@ package macorder;
 
 /**
  *
- * @author qra04_000
+ * @author HaeI
  */
-public class SanghaiBuger extends Burger{
-
-    public SanghaiBuger() {
-        this.description = "상하이버거";
+public class JalapenoBurger extends Burger{
+    
+    public JalapenoBurger() {
+        this.description = "할라피뇨버거";
     }
 
     public void makeBurger() {
-        System.out.println("상하이버거를 만듭니다.");
+        System.out.println("할라피뇨버거를 만듭니다.");
     }
 
     @Override
     public int cost() {
-        return 4500;
+        return 4000;
     }
-
 }

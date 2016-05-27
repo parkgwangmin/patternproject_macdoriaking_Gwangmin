@@ -7,19 +7,17 @@ package macorder;
 
 /**
  *
- * @author qra04_000
+ * @author HaeI
  */
-public class BulgogiCommand implements Command {
+public class CheeseCommand implements Command{
+    CheeseBurger cheese;
 
-    BulgogiBurger bulgogi;
-
-    public BulgogiCommand(BulgogiBurger bulgogiBurger) {
-        this.bulgogi = bulgogiBurger;
+    public CheeseCommand(CheeseBurger cheeseBurger) {
+        this.cheese = cheeseBurger;
     }
 
     @Override
     public void execute() {
-        bulgogi.makeBurger();
+        cheese.makeBurger();
     }
-
 }

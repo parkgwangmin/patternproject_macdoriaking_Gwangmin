@@ -9,17 +9,19 @@ package macorder;
  *
  * @author qra04_000
  */
-public class CafelatteCommand implements Command {
+public class BulgogiBurger extends Burger{
 
-    Cafelatte cafelatte;
+    public BulgogiBurger() {
+        this.description = "불고기버거";
+    }
 
-    public CafelatteCommand(Cafelatte cafelatte) {
-        this.cafelatte = cafelatte;
+    public void makeBurger() {
+        System.out.println("불고기버거를 만듭니다.");
     }
 
     @Override
-    public void execute() {
-        cafelatte.makeCoffee();
+    public int cost() {
+        return 4000;
     }
 
 }
