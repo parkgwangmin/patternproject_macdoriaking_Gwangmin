@@ -340,12 +340,13 @@ public class OrderPanel extends JPanel implements ActionListener {
             orderCTL.setCommand(makeShrimp);
             burger = shrimp;
             //다른 메뉴를 동시에 선택하지 못하게 하기 위해
+            /*
             bt_Sanghai.setEnabled(false);
             bt_Bulgogi.setEnabled(false);
             bt_Jalapeno.setEnabled(false);
             bt_DoubleBulgogi.setEnabled(false);
             bt_Cheese.setEnabled(false);
-
+            */
         }
         if (e.getSource() == bt_Cheese) {
             System.out.println("치즈버거 선택");
@@ -355,11 +356,13 @@ public class OrderPanel extends JPanel implements ActionListener {
             orderCTL.setCommand(makeCheese);
             burger = cheese;
             //다른 메뉴를 동시에 선택하지 못하게 하기 위해
+            /*
             bt_Sanghai.setEnabled(false);
             bt_Bulgogi.setEnabled(false);
             bt_Jalapeno.setEnabled(false);
             bt_DoubleBulgogi.setEnabled(false);
             bt_Shrimp.setEnabled(false);
+            */
         }
 
         /**
