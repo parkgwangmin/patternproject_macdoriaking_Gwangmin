@@ -35,6 +35,8 @@ import static java.lang.Thread.sleep;
 import static java.lang.Thread.sleep;
 import static java.lang.Thread.sleep;
 import static java.lang.Thread.sleep;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -43,6 +45,7 @@ import static java.lang.Thread.sleep;
 public class OrderPanel extends JPanel implements ActionListener {
 
     private JLabel Bemenu;
+     private JButton bt_cancel;//취소키
     private JButton bt_Americano, bt_Espresso, bt_CaramelMacchiato, bt_CafeLatte, bt_Ice, bt_Whip, bt_Shot, take_OK_cafe;
     //아메리카노, 에스프레소, 카라멜 마끼아또, 카페라떼, 얼음추가, 휘핑추가, 시럽추가
     private JButton bt_Sanghai, bt_Bulgogi,bt_Jalapeno, bt_DoubleBulgogi,bt_Shrimp, bt_Cheese,bt_SetMenu, bt_Coke, bt_French, take_OK_burger;
@@ -53,6 +56,10 @@ public class OrderPanel extends JPanel implements ActionListener {
     private JTextArea textfd;
     private int cafestock = 100;
     private int burgerstock = 100;
+    private String lists="";//한 주문을 모두 저장하기 위한 공간
+    private int cnt=0;//리스트 순서저장
+  
+    List<String> totalList = new ArrayList<String>();//주문여러개를 한 번에 저장하기 위해 존재
 
     public OrderPanel() {
         setLayout(null);
@@ -174,6 +181,12 @@ public class OrderPanel extends JPanel implements ActionListener {
         take_OK_cafe.setBounds(460, 670, 100, 50);
         take_OK_cafe.addActionListener(this);
         add(take_OK_cafe);
+        
+        //취소키
+        bt_cancel = new JButton("취소");
+        bt_cancel.setBounds(200, 510, 150, 50);
+        bt_cancel.addActionListener(this);
+        add(bt_cancel);
 
     }
 
@@ -191,6 +204,7 @@ public class OrderPanel extends JPanel implements ActionListener {
             AmericanoCommand makeAmericano = new AmericanoCommand((Americano) americano);
             orderCTL.setCommand(makeAmericano);
             macafe = americano;
+            lists=lists+"+ 아메리카노";
         }
          
         if (e.getSource() == bt_Espresso) {
@@ -200,6 +214,7 @@ public class OrderPanel extends JPanel implements ActionListener {
             EspressoCommand makeEspresso = new EspressoCommand((Espresso) espresso);
             orderCTL.setCommand(makeEspresso);
             macafe = espresso;
+            lists=lists+" + 에스프레소";
         }
         
         if (e.getSource() == bt_CaramelMacchiato) {
@@ -209,6 +224,7 @@ public class OrderPanel extends JPanel implements ActionListener {
             CaramelMacchiatoCommand makeCaramelMacchiato = new CaramelMacchiatoCommand((CaramelMacchiato) caramelMacchiato);
             orderCTL.setCommand(makeCaramelMacchiato);
             macafe = caramelMacchiato;
+            lists=lists+" + 카라멜마끼아또";
         }
          
         if (e.getSource() == bt_CafeLatte) {
@@ -218,6 +234,7 @@ public class OrderPanel extends JPanel implements ActionListener {
             CafeLatteCommand makeCafeLatte = new CafeLatteCommand((CafeLatte) cafeLatte);
             orderCTL.setCommand(makeCafeLatte);
             macafe = cafeLatte;
+            lists=lists+" + 카페라떼";
         }
 
         /**
@@ -229,20 +246,23 @@ public class OrderPanel extends JPanel implements ActionListener {
             System.out.println("얼음추가 선택");
             textfd.append("얼음추가 선택\n");
             macafe = new Ice(macafe);
+            lists=lists+" + 얼음추가";
         }
         
         if (e.getSource() == bt_Whip) {
             System.out.println("휘핑추가 선택");
             textfd.append("휘핑추가 선택\n");
             macafe = new Whip(macafe);
+            lists=lists+" + 휘핑추가";
         }
 
         if (e.getSource() == bt_Shot) {
             System.out.println("샷추가 선택");
             textfd.append("샷추가 선택\n");
             macafe = new Shot(macafe);
+            lists=lists+" + 샷추가";
         }
-
+        
         
         /**
          * 맥카페 주문버튼         * 
@@ -259,6 +279,11 @@ public class OrderPanel extends JPanel implements ActionListener {
                 textfd.append("주문결과 : " + macafe.getDescription() + "\n"
                               + "가격 : " + macafe.cost() + "\n"
                               + "커피재고량 : " + cafestock);
+                
+                totalList.add(lists);
+                System.out.println("List 출력 :"+cnt+":"+ totalList.get(cnt));
+                System.out.println();
+                cnt++;
             } else {
                 textfd.setText("커피 재고 부족...");
             }
@@ -278,6 +303,7 @@ public class OrderPanel extends JPanel implements ActionListener {
             SanghaiCommand makeSanghai = new SanghaiCommand((SanghaiBurger) sanghai);
             orderCTL.setCommand(makeSanghai);
             burger = sanghai;
+            lists= lists+"+ 상하이버거";//list추가
             //다른 메뉴를 동시에 선택하지 못하게 하기 위해
             bt_Bulgogi.setEnabled(false);
             bt_DoubleBulgogi.setEnabled(false);
@@ -294,6 +320,7 @@ public class OrderPanel extends JPanel implements ActionListener {
             BulgogiCommand makeBulgogi = new BulgogiCommand(bulgogi);
             orderCTL.setCommand(makeBulgogi);
             burger = bulgogi;
+            lists= lists+"+ 불고기버거";//list추가
             //다른 메뉴를 동시에 선택하지 못하게 하기 위해
             bt_Sanghai.setEnabled(false);
             bt_DoubleBulgogi.setEnabled(false);
@@ -309,6 +336,7 @@ public class OrderPanel extends JPanel implements ActionListener {
             JalapenoCommand makeJalapeno = new JalapenoCommand((JalapenoBurger) jalapeno);
             orderCTL.setCommand(makeJalapeno);
             burger = jalapeno;
+            lists= lists+"+ 할라피뇨버거";//list추가
             //다른 메뉴를 동시에 선택하지 못하게 하기 위해
             bt_Sanghai.setEnabled(false);
             bt_Bulgogi.setEnabled(false);
@@ -324,6 +352,7 @@ public class OrderPanel extends JPanel implements ActionListener {
             DoubleBulgogiCommand makeDoubleBulgogi = new DoubleBulgogiCommand(doublebulgogi);
             orderCTL.setCommand(makeDoubleBulgogi);
             burger = doublebulgogi;
+            lists= lists+"+ 더블불고기버거";//list추가
             //다른 메뉴를 동시에 선택하지 못하게 하기 위해
             bt_Sanghai.setEnabled(false);
             bt_Bulgogi.setEnabled(false);
@@ -339,14 +368,15 @@ public class OrderPanel extends JPanel implements ActionListener {
             ShrimpCommand makeShrimp = new ShrimpCommand((ShrimpBurger) shrimp);
             orderCTL.setCommand(makeShrimp);
             burger = shrimp;
+            lists= lists+"+ 새우버거";//list추가
             //다른 메뉴를 동시에 선택하지 못하게 하기 위해
-            /*
+            
             bt_Sanghai.setEnabled(false);
             bt_Bulgogi.setEnabled(false);
             bt_Jalapeno.setEnabled(false);
             bt_DoubleBulgogi.setEnabled(false);
             bt_Cheese.setEnabled(false);
-            */
+            
         }
         if (e.getSource() == bt_Cheese) {
             System.out.println("치즈버거 선택");
@@ -355,14 +385,15 @@ public class OrderPanel extends JPanel implements ActionListener {
             CheeseCommand makeCheese = new CheeseCommand(cheese);
             orderCTL.setCommand(makeCheese);
             burger = cheese;
+            lists= lists+"+ 치즈버거";//list추가
             //다른 메뉴를 동시에 선택하지 못하게 하기 위해
-            /*
+            
             bt_Sanghai.setEnabled(false);
             bt_Bulgogi.setEnabled(false);
             bt_Jalapeno.setEnabled(false);
             bt_DoubleBulgogi.setEnabled(false);
             bt_Shrimp.setEnabled(false);
-            */
+            
         }
 
         /**
@@ -374,18 +405,21 @@ public class OrderPanel extends JPanel implements ActionListener {
             System.out.println("콜라 추가선택 + 1500원");
             textfd.append("콜라 추가선택 + 1500원\n");
             burger = new Coke(burger);
+            lists= lists+"+ 콜라추가";
         }
 
         if (e.getSource() == bt_French) {
             System.out.println("후렌치후라이 추가선택 + 1500원");
             textfd.append("후렌치후라이 추가선택 + 1500원\n");
             burger = new FrenchFries(burger);
+            lists= lists+"+ 후렌치후라이 추가";
         }
 
         if (e.getSource() == bt_SetMenu) {
             System.out.println("세트메뉴선택 + 2000원");
             textfd.append("세트메뉴선택 + 1500원\n");
             burger = new SetBurgerMenu(burger);
+            lists= lists+"+ 세트메뉴추가";
         }
 
         /**
@@ -400,6 +434,18 @@ public class OrderPanel extends JPanel implements ActionListener {
                               +"가격 : " + burger.cost() + "\n"
                               +"버거 재고 : " + burgerstock + "\n");
                 
+                totalList.add(lists);
+                System.out.println();
+                System.out.println("TotalList 출력 :"+totalList.get(cnt)); 
+                cnt++;
+                lists ="";
+
+                for(Object object : totalList) {
+                    String element = (String) object;
+                    System.out.println("list출력 : "+ element);
+                }
+                
+      
                 //버튼 다시 전부 활성화
                 bt_Sanghai.setEnabled(true);
                 bt_Bulgogi.setEnabled(true);
@@ -410,6 +456,20 @@ public class OrderPanel extends JPanel implements ActionListener {
                 
             } else {
                 textfd.setText("버거 재고 부족 ...");
+            }
+        }
+        
+        /**
+         * 바로 전 주문 취소버튼
+         * 수정일 : 5.26 2pm
+         */
+        if(e.getSource()==bt_cancel)
+        {
+            System.out.println(totalList.remove(cnt-1));/////////////////////////////////////////////
+            
+            for(Object object : totalList) {
+                String element = (String) object;
+                System.out.println("list출력 : "+ element);
             }
         }
     }
