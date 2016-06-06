@@ -58,6 +58,7 @@ public class OrderPanel extends JPanel implements ActionListener {
     private int burgerstock = 100;
     private String lists="";//한 주문을 모두 저장하기 위한 공간
     private int cnt=0;//리스트 순서저장
+    private int rear =0;//cnt를 저장해서 취소버튼 실행시 줄어든 값을 저장
   
     List<String> totalList = new ArrayList<String>();//주문여러개를 한 번에 저장하기 위해 존재
 
@@ -284,6 +285,7 @@ public class OrderPanel extends JPanel implements ActionListener {
                 System.out.println("List 출력 :"+cnt+":"+ totalList.get(cnt));
                 System.out.println();
                 cnt++;
+                rear=cnt;
             } else {
                 textfd.setText("커피 재고 부족...");
             }
@@ -435,9 +437,10 @@ public class OrderPanel extends JPanel implements ActionListener {
                               +"버거 재고 : " + burgerstock + "\n");
                 
                 totalList.add(lists);
-                System.out.println();
+                System.out.println(cnt);
                 System.out.println("TotalList 출력 :"+totalList.get(cnt)); 
                 cnt++;
+                rear =cnt;
                 lists ="";
 
                 for(Object object : totalList) {
@@ -465,12 +468,20 @@ public class OrderPanel extends JPanel implements ActionListener {
          */
         if(e.getSource()==bt_cancel)
         {
-            System.out.println(totalList.remove(cnt-1));/////////////////////////////////////////////
-            
-            for(Object object : totalList) {
-                String element = (String) object;
-                System.out.println("list출력 : "+ element);
+            if(rear<1){
+                System.out.println("주문이 없습니다.");
             }
+            else{
+                rear = rear-1;
+                System.out.println(totalList.remove(rear));
+                //System.out.println(cnt);
+                for(Object object : totalList) {
+                    String element = (String) object;
+                    System.out.println("list출력 : "+ element);
+                }
+                cnt=rear;
+            }
+            
         }
     }
 
