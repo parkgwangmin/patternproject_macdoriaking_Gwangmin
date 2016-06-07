@@ -5,6 +5,8 @@
  */
 package macorder;
 
+import TemplateMethod.CheeseWithHook;
+
 /**
  *
  * @author HaeI
@@ -15,7 +17,9 @@ public class CheeseBurger extends Burger{
     }
 
     public void makeBurger() {
-        System.out.println("치즈버거를 만듭니다.");
+       System.out.println("\n" + description + " 준비중...");
+        CheeseWithHook BulgogiHook = new CheeseWithHook();
+        BulgogiHook.prepareRecipe();
     }
 
     @Override

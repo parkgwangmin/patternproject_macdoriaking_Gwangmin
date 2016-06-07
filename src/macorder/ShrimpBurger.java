@@ -5,6 +5,8 @@
  */
 package macorder;
 
+import TemplateMethod.ShrimpWithHook;
+
 /**
  *
  * @author HaeI
@@ -15,7 +17,10 @@ public class ShrimpBurger extends Burger{
     }
 
     public void makeBurger() {
-        System.out.println("새우버거를 만듭니다.");
+        System.out.println("\n" + description + " 준비중...");
+        ShrimpWithHook BulgogiHook = new ShrimpWithHook();
+        BulgogiHook.prepareRecipe();
+
     }
 
     @Override

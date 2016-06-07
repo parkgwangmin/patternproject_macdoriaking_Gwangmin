@@ -5,6 +5,8 @@
  */
 package macorder;
 
+import TemplateMethod.SanghaiWithHook;
+
 /**
  *
  * @author qra04_000
@@ -16,7 +18,9 @@ public class SanghaiBurger extends Burger{
     }
 
     public void makeBurger() {
-        System.out.println("상하이버거를 만듭니다.");
+        System.out.println("\n" + description + " 준비중...");
+        SanghaiWithHook BulgogiHook = new SanghaiWithHook();
+        BulgogiHook.prepareRecipe();
     }
 
     @Override

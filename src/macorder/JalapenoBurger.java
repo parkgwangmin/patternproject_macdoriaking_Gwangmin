@@ -5,6 +5,8 @@
  */
 package macorder;
 
+import TemplateMethod.JalapenoWithHook;
+
 /**
  *
  * @author HaeI
@@ -16,7 +18,9 @@ public class JalapenoBurger extends Burger{
     }
 
     public void makeBurger() {
-        System.out.println("할라피뇨버거를 만듭니다.");
+        System.out.println("\n" + description + " 준비중...");
+        JalapenoWithHook BulgogiHook = new JalapenoWithHook();
+        BulgogiHook.prepareRecipe();
     }
 
     @Override

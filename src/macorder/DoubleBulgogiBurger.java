@@ -5,6 +5,8 @@
  */
 package macorder;
 
+import TemplateMethod.DoubleBulgogiWithHook;
+
 /**
  *
  * @author HaeI
@@ -15,7 +17,9 @@ public class DoubleBulgogiBurger extends Burger{
     }
 
     public void makeBurger() {
-        System.out.println("더블불고기버거를 만듭니다.");
+        System.out.println("\n" + description + " 준비중...");
+        DoubleBulgogiWithHook BulgogiHook = new DoubleBulgogiWithHook();
+        BulgogiHook.prepareRecipe();
     }
 
     @Override
