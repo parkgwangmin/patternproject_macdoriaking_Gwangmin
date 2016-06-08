@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mackitchen;
+package macKitchen;
+
+import macorder.OrderPanel;
 
 /**
  *
@@ -11,6 +13,7 @@ package mackitchen;
  */
 public class MacKitchen extends javax.swing.JFrame {
 
+ 
     /**
      * Creates new form MacKitchen
      */
@@ -81,6 +84,7 @@ public class MacKitchen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -11,5 +11,6 @@ package macobserver;
  */
 public interface Observer {
 
-    public void update(int sales, int stock, int order);
+    public void update(int sales, int burgerstock,int beverage, int order);
+    
 }
